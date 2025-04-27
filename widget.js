@@ -77,7 +77,7 @@
     // Set up map functionality
     function setupMapLinks() {
       // Add click event to all building links
-      document.querySelectorAll('.block.grey strong a').forEach(link => {
+      document.querySelectorAll('.event.block strong a').forEach(link => {
         // Remove any existing event listeners
         const newLink = link.cloneNode(true);
         link.parentNode.replaceChild(newLink, link);
