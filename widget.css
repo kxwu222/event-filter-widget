@@ -1,0 +1,160 @@
+/* event-filter-widget.css */
+:root {
+  --efw-primary: #005f73;
+  --efw-secondary: #e0fbfc;
+  --efw-accent: #ffb703;
+  --efw-text: #22223b;
+  --efw-light-grey: #f1faee;
+  --efw-dark-grey: #3d5a80;
+}
+
+.efw-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+  font-family: "Source Sans", sans-serif;
+}
+
+.efw-search-box {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  position: relative;
+  flex: 1;
+}
+
+.efw-search-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: none;
+  font-size: 1rem;
+  outline: none;
+  border-radius: 4px;
+  color: var(--efw-text);
+  background: var(--efw-secondary);
+}
+
+.efw-clear-btn {
+  position: absolute;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  color: var(--efw-dark-grey);
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.efw-month-filter {
+  position: relative;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--efw-light-grey);
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.95rem;
+  min-width: 180px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  user-select: none;
+  color: var(--efw-primary);
+}
+
+.efw-dropdown-arrow {
+  font-size: 0.8rem;
+  color: var(--efw-dark-grey);
+  margin-left: 0.5rem;
+}
+
+.efw-month-dropdown {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  background: #fff;
+  border: 1px solid var(--efw-light-grey);
+  border-radius: 4px;
+  min-width: 180px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  z-index: 1000;
+  display: none;
+  padding: 0.25rem 0;
+}
+
+.efw-month-option {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  background: #fff;
+  border: none;
+  width: 100%;
+  text-align: left;
+  transition: background 0.2s;
+  color: var(--efw-text);
+}
+
+.efw-month-option.active,
+.efw-month-option:hover {
+  background: var(--efw-secondary);
+  font-weight: bold;
+  color: var(--efw-primary);
+}
+
+.efw-month-option[data-month=""] {
+  border-bottom: 1px solid var(--efw-light-grey);
+  font-weight: 600;
+  color: var(--efw-primary);
+  background: var(--efw-secondary);
+}
+
+/* Map functionality styles */
+.efw-map-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid var(--efw-light-grey);
+  border-radius: 4px;
+  padding: 0.5rem;
+  z-index: 1003;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  min-width: 200px;
+}
+
+.efw-map-options a {
+  display: block;
+  padding: 0.5rem;
+  color: var(--efw-primary);
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.efw-map-options a:hover {
+  background-color: var(--efw-secondary);
+  color: var(--efw-accent);
+}
+
+@media (max-width: 600px) {
+  .efw-container {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+  .efw-month-filter {
+    min-width: 0;
+    width: 100%;
+  }
+  .efw-month-dropdown {
+    min-width: 0;
+    width: 100%;
+  }
+} 
