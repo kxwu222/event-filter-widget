@@ -112,21 +112,51 @@
             </a>
           `;
           
-          // Position the options container
-          const rect = newLink.getBoundingClientRect();
-          mapOptions.style.position = 'fixed';
-          mapOptions.style.top = `${rect.bottom + 4}px`;
-          mapOptions.style.left = `${rect.left}px`;
-          mapOptions.style.zIndex = '1003';
-          mapOptions.style.display = 'block';
+          // Add CSS to prevent flickering
+          mapOptions.style.cssText = `
+            position: fixed;
+            z-index: 1003;
+            display: block;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            padding: 8px;
+            transform: translateZ(0);
+            will-change: transform;
+            backface-visibility: hidden;
+          `;
           
-          // Append to body
+          // Position the options container
+          const updatePosition = () => {
+            const rect = newLink.getBoundingClientRect();
+            mapOptions.style.top = `${rect.bottom + 4}px`;
+            mapOptions.style.left = `${rect.left}px`;
+          };
+          
+          // Initial positioning
+          updatePosition();
           document.body.appendChild(mapOptions);
+          
+          // Use requestAnimationFrame for smooth updates
+          let ticking = false;
+          const scrollHandler = () => {
+            if (!ticking) {
+              window.requestAnimationFrame(() => {
+                updatePosition();
+                ticking = false;
+              });
+              ticking = true;
+            }
+          };
+          
+          // Add scroll listener
+          window.addEventListener('scroll', scrollHandler, { passive: true });
           
           // Close options when clicking outside
           const closeOptions = (e) => {
             if (!mapOptions.contains(e.target) && e.target !== newLink) {
               mapOptions.remove();
+              window.removeEventListener('scroll', scrollHandler);
               document.removeEventListener('click', closeOptions);
             }
           };
@@ -143,4 +173,4 @@
   global.EventFilterWidget = {
     init: createWidget
   };
-})(window); 
+})(window);
