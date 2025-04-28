@@ -4,7 +4,7 @@ A lightweight, standalone JavaScript widget for filtering and searching events o
 
 ## Features
 
-- **Search Functionality**: Filter events by title or location
+- **Search Functionality**: Filter events by title
 - **Month Filtering**: Filter events by month with a dropdown selector
 - **Map Integration**: Click on location links to open in Google Maps or Apple Maps
 - **Responsive Design**: Works on both desktop and mobile devices
