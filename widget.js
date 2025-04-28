@@ -94,11 +94,8 @@
           
           const buildingName = newLink.textContent;
           const googleMapsUrl = newLink.href;
-          const daddrMatch = googleMapsUrl.match(/daddr=(.*?)&/);
-          let appleMapsUrl = "https://maps.apple.com/";
-          if (daddrMatch) {
-            appleMapsUrl += `?daddr=${daddrMatch[1]}`;
-          }
+          // Create Apple Maps URL with My Location as starting point
+          const appleMapsUrl = `https://maps.apple.com/maps?saddr=My+Location&daddr=${encodeURIComponent(buildingName)}`;
           
           // Create map options container
           const mapOptions = document.createElement('div');
